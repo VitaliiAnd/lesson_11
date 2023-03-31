@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        <a href="../index.html"> Назад</a>
+    </h3>
+    <h3>
+        Знайти суми елементів у вказаній області
+    </h3>
+    <script>
+       let arr = [
+        [13, 22, 3, 11, 44, 31],
+        [9, 51, 32, 14, 40, 18],
+        [8, 14, 44, 10, 12, 30],
+        [43, 11, 15, 20, 42, 12],
+        [43, 23, 24, 11, 54, 23],
+       ];
+       //===========1
+       let totalSum = 0;
+       for (let i = 0; i < Math.floor(arr.length / 2); i++){
+        for (let k = 0; k < Math.floor(arr[i].length / 2); k++) {
+            totalSum += arr[i][k];
+        }
+       }
+       document.write(`Сума елементів:${totalSum}<br>`);
+       //============2
+       let totalSum2 = 0;
+       for (let i = 0; i < Math.floor(arr.length / 2); i++){
+        for (let k = Math.floor(arr[i].length / 2); k < arr[i].length; k++){
+            totalSum2 += arr[i][k];
+        }
+       }
+       document.write(`Сума елементів:${totalSum2}<br>`);
+       //============3
+       let totalSum3 = 0;
+       for (let i = 0; i < Math.floor(arr.length / 2); i++){
+        for (let k = 0; k < Math.floor(arr[i].length / 2); k++) {
+            totalSum += arr[i][k];
+        }
+       }
+       document.write(`Сума елементів:${totalSum3}<br>`);
+       //============4
+       let totalSum4 = 0;
+       for (let i = 0; i < Math.floor(arr.length / 2); i++){
+        for (let k = 0; k < Math.floor(arr[i].length / 2); k++) {
+            totalSum += arr[i][k];
+        }
+       }
+       document.write(`Сума елементів:${totalSum4}<br>`);
+       //===============5 
+       let totalEvenRowsSum = 0;
+       for (let i = 0; i < arr.length; i+=2){
+        for(let k = 0; k < arr[i].length; k++){
+            totalEvenRowsSum += arr[i][k];
+        }
+       }
+       document.write(`сума парних рядків:${totalEvenRowsSum}<br>`)
+       //===============6
+       let totalEvenSum = 0;
+       for (let i = 0; i < arr.length; i++){
+        for (let k = 0; k < arr[i].length; k += 2){
+            totalEvenSum += arr[i][k];
+        }
+       }
+       document.write(`сума непарних стопців${totalEvenSum}<br>`)
+       //==============7
+       let totalEvenRowOddColumnSum = 0; 
+       for (let i = 0; i < arr.length; i += 2){
+        for (let k = 0; k < arr[i].length; k += 2){
+            totalEvenRowOddColumnSum += arr[i][k];
+        }
+       }
+       document.write(`сума у парних рядках непарних стовпців${totalEvenRowOddColumnSum}<br>`);
+
+       let totalOddRowEvenColumnSum = 0;
+       for (let i = 0; i < arr.length; i += 2){
+        for (let k = 1; k < arr[i].length; k += 2){
+            totalOddRowEvenColumnSum += arr[i][k];
+        }
+       }
+       document.write(`сума у непарних рядках парних стопців${totalEvenRowOddColumnSum}`)
+    </script>
+</body>
+</html>

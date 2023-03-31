@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h3>
+            <a href="../index.html"> Назад</a>
+        </h3>
+        <h2>Дано інформацію про прибуток К магазинів протягом тижня. Знайти :</h2>
+        <ul>
+            <li>загальний прибуток кожного масиву за тиждень;</li>
+            <li>загальний прибуток усіх магазинів по дням (загальний прибуток
+                усіх магазинів за понеділок, за вівторок, і т.д.);</li>
+            <li> загальний прибуток за робочі дні</li>
+            <li>загальний прибуток за вихідні дні</li>
+            <li> максимальний прибуток за середу</li>
+            <li>сформувати загальний список (одновимірний масив) зі значенням,
+                які що більші за 200</li>
+            <li>відсортувати кожен тиждень за зростанням</li>
+            <li>відсортувати тижні (рядки) за спаданням максимального елементи у 
+                цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати 
+                максимальні елементи у кожному з цих рядків</li>
+            <li>упорядкувати тижні (рядки) за спаданням суми елементів у рядку (
+                тобто при порівнянні двох рядків треба знайти суму кожного з рядків і 
+                порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше).</li>
+        </ul>
+        <script>
+            let arr = [
+            [20, 140, 110, 500, 800, 70, 190],
+            [11, 30, 25, 980, 4, 68, 203],
+            [40, 70, 90, 3000, 20, 9, 1100],
+            [1100, 80, 300, 500, 90, 10, 2000],
+            ];
+
+            // 1. Загальний прибуток кожного магазину за тиждень
+
+            for (let shopIndex = 0; shopIndex < arr.length; shopIndex++) {
+            let totalShopsSumOfTheWeek = 0;
+            for (
+                let shopPayIndex = 0;
+                shopPayIndex < arr[shopIndex].length;
+                shopPayIndex++
+            ) {
+                totalShopsSumOfTheWeek += arr[shopIndex][shopPayIndex];
+            }
+
+            document.write(
+                `Недельная выручка магазина ${
+                shopIndex + 1
+                }: ${totalShopsSumOfTheWeek} <br>`
+            );
+            }
+
+            // 2. Загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.)
+            for (let day = 0; day < 7; day++) {
+            let totalDaySum = 0;
+            let currentDay = "";
+            for (let shop = 0; shop < arr.length; shop++) {
+                totalDaySum += arr[shop][day];
+            }
+            switch (day) {
+                case 0:
+                currentDay = "понедельник";
+                break;
+                case 1:
+                currentDay = "вторник";
+                break;
+                case 2:
+                currentDay = "среду";
+                break;
+                case 3:
+                currentDay = "четверг";
+                break;
+                case 4:
+                currentDay = "пятницу";
+                break;
+                case 5:
+                currentDay = "субботу";
+                break;
+                case 6:
+                currentDay = "воскресенье";
+                break;
+            }
+            document.write(
+                `Выручка магазинов за ${currentDay}: ${totalDaySum} <br>`
+            );
+            }
+
+            // 3. Загальний прибуток за робочі дні
+            let totalWorkDaySum = 0;
+            for (let shopIndex = 0; shopIndex < arr.length; shopIndex++) {
+            for (let shopPayIndex = 0; shopPayIndex < 5; shopPayIndex++) {
+                totalWorkDaySum += arr[shopIndex][shopPayIndex];
+            }
+            }
+            document.write(
+            `Выручка магазинов за рабочие дни: ${totalWorkDaySum} <br>`
+            );
+
+            // 4. Загальний прибуток за вихідні дні
+
+            let totalWeekendSum = 0;
+            for (let shopIndex = 0; shopIndex < arr.length; shopIndex++) {
+            for (let shopPayIndex = 5; shopPayIndex < 7; shopPayIndex++) {
+                totalWeekendSum += arr[shopIndex][shopPayIndex];
+            }
+            }
+            document.write(
+            `Выручка магазинов за выходные дни: ${totalWeekendSum} <br>`
+            );
+
+            // 5. Максимальний прибуток за середу
+
+            let totalWednesdaySum = 0;
+            for (let shopIndex = 0; shopIndex < arr.length; shopIndex++) {
+            for (let shopPayIndex = 2; shopPayIndex < 3; shopPayIndex++) {
+                if (totalWednesdaySum < arr[shopIndex][shopPayIndex])
+                totalWednesdaySum = arr[shopIndex][shopPayIndex];
+            }
+            }
+            document.write(
+            `Максимальная выручка из магазинов за среду: ${totalWednesdaySum} <br>`
+            );
+
+            // 6. Cформувати загальний список (одновимірний масив) зі значенням, які більші за 200
+
+            let arrayOfPricesGreaterThen200 = [];
+            for (let shop = 0; shop < arr.length; shop++) {
+            for (let day = 0; day < arr[shop].length; day++) {
+                if (arr[shop][day] > 200)
+                arrayOfPricesGreaterThen200.push(arr[shop][day]);
+            }
+            }
+
+            document.write(
+            `Массив цен больше 200: ${arrayOfPricesGreaterThen200} <br>`
+            );
+
+            // 7. Відсортувати кожен тиждень за зростанням
+
+            for (let shopIndex = 0; shopIndex < arr.length; shopIndex++) {
+            let arrayOfPrices = [];
+            for (
+                let shopPayIndex = 0;
+                shopPayIndex < arr[shopIndex].length;
+                shopPayIndex++
+            ) {
+                arrayOfPrices.push(arr[shopIndex][shopPayIndex]);
+            }
+            arrayOfPrices.sort((el1, el2) => el1 - el2);
+
+            document.write(
+                `Недельная выручка магазина ${
+                shopIndex + 1
+                } по возростанию: ${arrayOfPrices} <br>`
+            );
+            }
+
+            // 8. Відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+
+            let arrayOfMaxPrice = arr.sort(
+            (el1, el2) => Math.max(...el2) - Math.max(...el1)
+            );
+
+            document.write(
+            `Массив по убыванию недель в зависимости от максимального числа: ${arrayOfMaxPrice} <br>`
+            );
+
+            // 9. Упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше).
+
+            function getSum(arr) {
+            let totalSum = 0;
+            for (let day = 0; day < arr.length; day++) {
+                totalSum += arr[day];
+            }
+            return totalSum
+            }
+
+            let arrayOfMaxSum = arr.sort((el1, el2) => getSum(el2) - getSum(el1));
+
+            document.write(
+            `Массив по убыванию недель в зависимости от суммы значений недели: ${arrayOfMaxSum}`
+            );
+        </script>
+    </body>
+</html>
